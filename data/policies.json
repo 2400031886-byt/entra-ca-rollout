@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1001,
+    "name": "Require MFA for All Users",
+    "description": "Require MFA for users accessing corporate resources.",
+    "condition": "All users",
+    "action": "Require MFA",
+    "status": "Testing",
+    "createdAt": "2026-09-27T00:00:00.000Z"
+  },
+  {
+    "id": 1002,
+    "name": "Block High Risk Sign-ins",
+    "description": "Block authentication attempts with high user risk.",
+    "condition": "High risk",
+    "action": "Block access",
+    "status": "Testing",
+    "createdAt": "2026-09-27T00:00:00.000Z"
+  },
+  {
+    "id": 1003,
+    "name": "Require Compliant Device",
+    "description": "Allow access only from compliant devices.",
+    "condition": "Unknown device",
+    "action": "Require compliant device",
+    "status": "Draft",
+    "createdAt": "2026-09-27T00:00:00.000Z"
+  },
+  {
+    "id": 1790453026279,
+    "name": "Require MFA for Admin Roles",
+    "description": "Require MFA for administrator roles from any location.",
+    "condition": "Report-only",
+    "action": "Testing",
+    "status": "Testing",
+    "createdAt": "2026-09-26T20:03:46.279Z"
+  },
+  {
+    "id": 1790455997367,
+    "name": "Require MFA for Admin Roles",
+    "description": "Require MFA for administrator roles from any location.",
+    "condition": "Admin Roles",
+    "action": "Require MFA",
+    "status": "Testing",
+    "createdAt": "2026-09-26T20:53:17.367Z"
+  },
+  {
+    "id": 1790456047353,
+    "name": "Block Legacy Authentication",
+    "description": "Block legacy authentication protocols.",
+    "condition": "Legacy Authentication",
+    "action": "Block access",
+    "status": "Report-only",
+    "createdAt": "2026-09-26T20:54:07.353Z"
+  },
+  {
+    "id": 1790457952465,
+    "name": "narendra",
+    "description": "yes",
+    "condition": "All users",
+    "action": "Require MFA",
+    "status": "Draft",
+    "createdAt": "2026-09-26T21:25:52.465Z"
+  },
+  {
+    "id": 1790479146728,
+    "name": "Block Legacy Authentication",
+    "description": "Block legacy authentication protocols to improve account security.",
+    "condition": "All users",
+    "action": "Require MFA",
+    "status": "Draft",
+    "createdAt": "2026-09-27T03:19:06.729Z"
+  },
+  {
+    "id": 1790479241332,
+    "name": "Block Legacy Authentication",
+    "description": "Block legacy authentication protocols to improve account security.",
+    "condition": "All users",
+    "action": "Block access",
+    "status": "Testing",
+    "createdAt": "2026-09-27T03:20:41.332Z"
+  }
+]

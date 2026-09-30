@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>EntraGuard | Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef5ff,
+                    #f8fafc
+                );
+
+        }
+
+        .login-box {
+
+            width: 420px;
+
+            max-width: 92%;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(15,23,42,0.12);
+
+        }
+
+        .logo {
+
+            width: 60px;
+
+            height: 60px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3b82f6,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            font-size: 28px;
+
+            font-weight: 800;
+
+        }
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 25px;
+
+            color: #0f172a;
+
+            margin-bottom: 7px;
+
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 30px;
+
+        }
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #334155;
+
+        }
+
+        input {
+
+            width: 100%;
+
+            height: 48px;
+
+            padding: 12px;
+
+            margin-bottom: 18px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            outline: none;
+
+        }
+
+        input:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(37,99,235,0.1);
+
+        }
+
+        button {
+
+            width: 100%;
+
+            height: 48px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3b82f6,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            opacity: 0.9;
+
+        }
+
+        .security {
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            text-align: center;
+
+            background: #eff6ff;
+
+            color: #1d4ed8;
+
+            border-radius: 9px;
+
+            font-size: 11px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="login-box">
+
+        <div class="logo">
+            E
+        </div>
+
+        <h1>
+            Welcome to EntraGuard
+        </h1>
+
+        <p class="subtitle">
+            Identity &amp; Access Security Platform
+        </p>
+
+
+        <form onsubmit="loginUser(event)">
+
+            <label>
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter email"
+                required>
+
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required>
+
+
+            <button type="submit">
+                Continue
+            </button>
+
+        </form>
+
+
+        <div class="security">
+
+            🔐 MFA verification is required
+            for all users.
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function loginUser(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            // ADMIN
+            if (
+                email === "admin@company.com" &&
+                password === "admin123"
+            ) {
+
+                sessionStorage.setItem(
+                    "loginRole",
+                    "Admin"
+                );
+
+                sessionStorage.setItem(
+                    "loginEmail",
+                    email
+                );
+
+                window.location.href =
+                    "mfa.html";
+
+                return;
+            }
+
+
+            // USER
+            if (
+                email === "user@company.com" &&
+                password === "user123"
+            ) {
+
+                sessionStorage.setItem(
+                    "loginRole",
+                    "User"
+                );
+
+                sessionStorage.setItem(
+                    "loginEmail",
+                    email
+                );
+
+                window.location.href =
+                    "mfa.html";
+
+                return;
+            }
+
+
+            alert(
+                "Invalid email or password."
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

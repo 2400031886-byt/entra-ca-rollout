@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>EntraGuard | MFA Verification</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef5ff,
+                    #f8fafc
+                );
+
+            color: #0f172a;
+        }
+
+
+        /* ================================
+           MFA BOX
+        ================================= */
+
+        .mfa-box {
+
+            width: 430px;
+
+            max-width: 92%;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            border:
+                1px solid #e2e8f0;
+
+            box-shadow:
+                0 25px 65px
+                rgba(15,23,42,0.12);
+        }
+
+
+        /* ================================
+           LOGO
+        ================================= */
+
+        .logo {
+
+            width: 62px;
+
+            height: 62px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3b82f6,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            font-size: 29px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 9px 24px
+                rgba(37,99,235,0.25);
+        }
+
+
+        /* ================================
+           TITLE
+        ================================= */
+
+        h1 {
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+        }
+
+
+        .subtitle {
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 24px;
+        }
+
+
+        /* ================================
+           USER INFORMATION
+        ================================= */
+
+        .user-info {
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 11px;
+
+            padding: 13px;
+
+            margin-bottom: 22px;
+
+            font-size: 13px;
+
+            color: #475569;
+
+            line-height: 1.8;
+        }
+
+
+        .user-info strong {
+
+            color: #0f172a;
+        }
+
+
+        .role-badge {
+
+            display: inline-block;
+
+            margin-left: 5px;
+
+            padding: 3px 9px;
+
+            border-radius: 999px;
+
+            background: #eff6ff;
+
+            color: #1d4ed8;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* ================================
+           LABEL
+        ================================= */
+
+        label {
+
+            display: block;
+
+            text-align: left;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #334155;
+        }
+
+
+        /* ================================
+           MFA INPUT
+        ================================= */
+
+        #mfaCode {
+
+            width: 100%;
+
+            height: 55px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            text-align: center;
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            letter-spacing: 8px;
+
+            color: #0f172a;
+
+            padding-left: 8px;
+        }
+
+
+        #mfaCode:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(37,99,235,0.10);
+        }
+
+
+        /* ================================
+           VERIFY BUTTON
+        ================================= */
+
+        .verify-btn {
+
+            width: 100%;
+
+            height: 49px;
+
+            margin-top: 18px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3b82f6,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+
+        .verify-btn:hover {
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 9px 22px
+                rgba(37,99,235,0.25);
+        }
+
+
+        /* ================================
+           DEMO CODE
+        ================================= */
+
+        .demo-code {
+
+            margin-top: 18px;
+
+            padding: 12px;
+
+            background: #eff6ff;
+
+            border:
+                1px solid #dbeafe;
+
+            border-radius: 9px;
+
+            color: #1d4ed8;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .demo-code strong {
+
+            font-size: 16px;
+
+            letter-spacing: 3px;
+        }
+
+
+        /* ================================
+           MESSAGE
+        ================================= */
+
+        #message {
+
+            min-height: 20px;
+
+            margin-top: 15px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        /* ================================
+           BACK BUTTON
+        ================================= */
+
+        .back-btn {
+
+            width: 100%;
+
+            margin-top: 10px;
+
+            padding: 10px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            background: white;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .back-btn:hover {
+
+            background: #f8fafc;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="mfa-box">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+            E
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+            MFA Verification
+        </h1>
+
+
+        <p class="subtitle">
+            Verify your identity to continue
+        </p>
+
+
+        <!-- USER INFORMATION -->
+
+        <div class="user-info">
+
+            Account:
+
+            <strong id="userEmail">
+                Loading...
+            </strong>
+
+            <br>
+
+            Role:
+
+            <strong
+                id="userRole">
+                Loading...
+            </strong>
+
+        </div>
+
+
+        <!-- MFA INPUT -->
+
+        <label>
+            Enter 6-Digit Verification Code
+        </label>
+
+
+        <input
+            type="text"
+            id="mfaCode"
+            maxlength="6"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            placeholder="000000">
+
+
+        <!-- VERIFY -->
+
+        <button
+            class="verify-btn"
+            onclick="verifyMFA()">
+
+            Verify MFA
+
+        </button>
+
+
+        <!-- DEMO CODE -->
+
+        <div class="demo-code">
+
+            🔐 Demo verification code:
+
+            <br>
+
+            <strong id="demoCode">
+                ------
+            </strong>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <p id="message"></p>
+
+
+        <!-- BACK -->
+
+        <button
+            class="back-btn"
+            onclick="backToLogin()">
+
+            ← Back to Login
+
+        </button>
+
+
+    </div>
+
+
+
+    <script>
+
+        // =========================================
+        // GET LOGIN INFORMATION
+        // =========================================
+
+        const email =
+            sessionStorage.getItem(
+                "loginEmail"
+            );
+
+
+        const role =
+            sessionStorage.getItem(
+                "loginRole"
+            );
+
+
+        // If user came directly to MFA page
+        // without login
+
+        if (!email || !role) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // Display account
+
+        document
+            .getElementById("userEmail")
+            .textContent =
+            email || "Unknown";
+
+
+        // Display role
+
+        document
+            .getElementById("userRole")
+            .textContent =
+            role || "Unknown";
+
+
+        // =========================================
+        // GENERATE 6 DIGIT MFA CODE
+        // =========================================
+
+        const mfaCode =
+            Math.floor(
+                100000 +
+                Math.random() * 900000
+            ).toString();
+
+
+        // Show demo code
+
+        document
+            .getElementById("demoCode")
+            .textContent =
+            mfaCode;
+
+
+        // Also show in browser console
+
+        console.log(
+            "MFA Code:",
+            mfaCode
+        );
+
+
+        // =========================================
+        // VERIFY MFA
+        // =========================================
+
+        function verifyMFA() {
+
+            const enteredCode =
+                document
+                    .getElementById(
+                        "mfaCode"
+                    )
+                    .value
+                    .trim();
+
+
+            const message =
+                document
+                    .getElementById(
+                        "message"
+                    );
+
+
+            // Empty code
+
+            if (!enteredCode) {
+
+                message.textContent =
+                    "Please enter the MFA code.";
+
+                message.style.color =
+                    "#dc2626";
+
+                return;
+            }
+
+
+            // Code must be 6 digits
+
+            if (
+                enteredCode.length !== 6 ||
+                !/^\d+$/.test(
+                    enteredCode
+                )
+            ) {
+
+                message.textContent =
+                    "MFA code must contain 6 digits.";
+
+                message.style.color =
+                    "#dc2626";
+
+                return;
+            }
+
+
+            // =====================================
+            // CORRECT MFA
+            // =====================================
+
+            if (
+                enteredCode === mfaCode
+            ) {
+
+                message.textContent =
+                    "✓ MFA verified successfully!";
+
+                message.style.color =
+                    "#059669";
+
+
+                // Store authentication
+
+                sessionStorage.setItem(
+                    "loggedIn",
+                    "true"
+                );
+
+
+                // =================================
+                // ROLE BASED REDIRECTION
+                // =================================
+
+                setTimeout(
+                    function () {
+
+                        const currentRole =
+                            sessionStorage.getItem(
+                                "loginRole"
+                            );
+
+
+                        // ADMIN
+
+                        if (
+                            currentRole === "Admin"
+                        ) {
+
+                            window.location.href =
+                                "index.html";
+
+                        }
+
+
+                        // USER
+
+                        else if (
+                            currentRole === "User"
+                        ) {
+
+                            window.location.href =
+                                "user.html";
+
+                        }
+
+
+                        // UNKNOWN
+
+                        else {
+
+                            sessionStorage.clear();
+
+                            window.location.href =
+                                "login.html";
+
+                        }
+
+                    },
+                    800
+                );
+
+            }
+
+
+            // =====================================
+            // WRONG MFA
+            // =====================================
+
+            else {
+
+                message.textContent =
+                    "✕ Invalid MFA code. Access denied.";
+
+                message.style.color =
+                    "#dc2626";
+
+            }
+
+        }
+
+
+        // =========================================
+        // BACK TO LOGIN
+        // =========================================
+
+        function backToLogin() {
+
+            sessionStorage.removeItem(
+                "loginRole"
+            );
+
+            sessionStorage.removeItem(
+                "loginEmail"
+            );
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // =========================================
+        // ENTER KEY
+        // =========================================
+
+        document
+            .getElementById("mfaCode")
+            .addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        verifyMFA();
+
+                    }
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>

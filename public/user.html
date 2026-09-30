@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>EntraGuard | User Portal</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            background: #f4f7fb;
+
+            color: #0f172a;
+        }
+
+
+        /* =========================
+           HEADER
+           ========================= */
+
+        .header {
+
+            height: 80px;
+
+            background: white;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 35px;
+
+            box-shadow:
+                0 3px 15px
+                rgba(15,23,42,0.05);
+        }
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .logo {
+
+            width: 43px;
+
+            height: 43px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3b82f6,
+                    #1d4ed8
+                );
+
+            color: white;
+
+            font-weight: 800;
+
+            font-size: 21px;
+        }
+
+        .brand h2 {
+
+            font-size: 18px;
+        }
+
+        .brand span {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 11px;
+
+            margin-top: 2px;
+        }
+
+        .logout {
+
+            border: none;
+
+            background: #eff6ff;
+
+            color: #1d4ed8;
+
+            padding: 10px 17px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        .logout:hover {
+
+            background: #dbeafe;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           MAIN
+           ========================= */
+
+        .main {
+
+            padding: 35px;
+
+            max-width: 1200px;
+
+            margin: auto;
+        }
+
+
+        /* =========================
+           WELCOME
+           ========================= */
+
+        .welcome {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 8px 30px
+                rgba(15,23,42,0.06);
+
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+
+            font-size: 28px;
+
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           SECURITY CARDS
+           ========================= */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .card {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 5px 20px
+                rgba(15,23,42,0.05);
+
+            transition: 0.2s ease;
+        }
+
+        .card:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 25px
+                rgba(15,23,42,0.08);
+        }
+
+        .card-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: #eff6ff;
+
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+
+            font-size: 16px;
+
+            margin-bottom: 7px;
+        }
+
+        .card p {
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           ACCOUNT DETAILS
+           ========================= */
+
+        .account-details {
+
+            margin-top: 25px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(15,23,42,0.05);
+        }
+
+        .account-details h2 {
+
+            font-size: 18px;
+
+            margin-bottom: 20px;
+
+            color: #0f172a;
+        }
+
+        .details-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .detail-item {
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 15px;
+        }
+
+        .detail-item span {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+        .detail-item strong {
+
+            font-size: 13px;
+
+            color: #0f172a;
+
+            word-break: break-word;
+        }
+
+        .status-green {
+
+            color: #059669 !important;
+        }
+
+
+        /* =========================
+           CURRENT SIGN-IN INFORMATION
+           ========================= */
+
+        .signin-details {
+
+            margin-top: 25px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(15,23,42,0.05);
+        }
+
+        .signin-details h2 {
+
+            font-size: 18px;
+
+            margin-bottom: 20px;
+
+            color: #0f172a;
+        }
+
+        .signin-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .signin-item {
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 15px;
+        }
+
+        .signin-item span {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+        .signin-item strong {
+
+            font-size: 13px;
+
+            color: #0f172a;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           SECURITY POLICIES
+           ========================= */
+
+        .policies {
+
+            margin-top: 25px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(15,23,42,0.05);
+        }
+
+        .policies h2 {
+
+            font-size: 18px;
+
+            margin-bottom: 20px;
+
+            color: #0f172a;
+        }
+
+        .policy-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+        .policy-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 14px 16px;
+        }
+
+        .policy-icon {
+
+            width: 34px;
+
+            height: 34px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #dcfce7;
+
+            color: #16a34a;
+
+            font-weight: 800;
+
+            font-size: 15px;
+        }
+
+        .policy-icon.blocked {
+
+            background: #fee2e2;
+
+            color: #dc2626;
+        }
+
+        .policy-info {
+
+            flex: 1;
+        }
+
+        .policy-info strong {
+
+            display: block;
+
+            font-size: 13px;
+
+            color: #0f172a;
+
+            margin-bottom: 4px;
+        }
+
+        .policy-info span {
+
+            display: block;
+
+            font-size: 11px;
+
+            color: #64748b;
+        }
+
+        .policy-status {
+
+            padding: 5px 10px;
+
+            border-radius: 999px;
+
+            background: #ecfdf5;
+
+            color: #047857;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+        .policy-item:last-child .policy-status {
+
+            background: #fef2f2;
+
+            color: #dc2626;
+        }
+
+
+        /* =========================
+           RECENT SECURITY ACTIVITY
+           ========================= */
+
+        .activity {
+            margin-top: 25px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow:
+                0 5px 20px
+                rgba(15,23,42,0.05);
+        }
+
+        .activity h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .activity-icon {
+            width: 34px;
+            height: 34px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .activity-icon.success {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .activity-info {
+            flex: 1;
+        }
+
+        .activity-info strong {
+            display: block;
+            font-size: 13px;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .activity-info span {
+            display: block;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .activity-time {
+            font-size: 11px;
+            color: #64748b;
+            white-space: nowrap;
+        }
+
+        /* =========================
+           MFA SECURITY
+           ========================= */
+
+        .security {
+
+            margin-top: 25px;
+
+            background: #ecfdf5;
+
+            border: 1px solid #a7f3d0;
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            color: #047857;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+           ========================= */
+
+        @media(max-width: 900px) {
+
+            .details-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .signin-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .cards {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media(max-width: 700px) {
+
+            .cards {
+
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+
+                padding: 0 18px;
+            }
+
+            .main {
+
+                padding: 20px;
+            }
+
+            .welcome h1 {
+
+                font-size: 23px;
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .activity-item {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+
+            .activity-time {
+                margin-left: 48px;
+                width: 100%;
+            }
+
+
+
+            .details-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .signin-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .policy-item {
+
+                align-items: flex-start;
+
+                flex-wrap: wrap;
+            }
+
+            .policy-status {
+
+                margin-left: 48px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+         ========================= -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="logo">
+                E
+            </div>
+
+            <div>
+
+                <h2>
+                    EntraGuard
+                </h2>
+
+                <span>
+                    User Security Portal
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout"
+            onclick="logoutUser()">
+
+            Logout
+
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+         ========================= -->
+
+    <main class="main">
+
+
+        <!-- =========================
+             WELCOME
+             ========================= -->
+
+        <section class="welcome">
+
+            <h1>
+
+                Welcome,
+                <span id="userName">
+                    User
+                </span>
+
+            </h1>
+
+            <p>
+
+                You have successfully authenticated
+                using multi-factor authentication.
+
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             SECURITY CARDS
+             ========================= -->
+
+        <section class="cards">
+
+
+            <!-- ACCOUNT SECURITY -->
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    Account Security
+                </h3>
+
+                <p>
+
+                    Your account is protected with
+                    multi-factor authentication.
+
+                </p>
+
+            </div>
+
+
+            <!-- DEVICE STATUS -->
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💻
+                </div>
+
+                <h3>
+                    Device Status
+                </h3>
+
+                <p>
+
+                    Your current session is securely
+                    authenticated.
+
+                </p>
+
+            </div>
+
+
+            <!-- ACCESS STATUS -->
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🛡️
+                </div>
+
+                <h3>
+                    Access Status
+                </h3>
+
+                <p>
+
+                    Your identity has been verified
+                    successfully.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             ACCOUNT DETAILS
+             ========================= -->
+
+        <section class="account-details">
+
+            <h2>
+                Account Details
+            </h2>
+
+
+            <div class="details-grid">
+
+
+                <!-- EMAIL -->
+
+                <div class="detail-item">
+
+                    <span>
+                        Account Email
+                    </span>
+
+                    <strong id="accountEmail">
+                        user@company.com
+                    </strong>
+
+                </div>
+
+
+                <!-- ROLE -->
+
+                <div class="detail-item">
+
+                    <span>
+                        Role
+                    </span>
+
+                    <strong>
+                        User
+                    </strong>
+
+                </div>
+
+
+                <!-- AUTHENTICATION -->
+
+                <div class="detail-item">
+
+                    <span>
+                        Authentication
+                    </span>
+
+                    <strong class="status-green">
+                        MFA Enabled
+                    </strong>
+
+                </div>
+
+
+                <!-- ACCOUNT STATUS -->
+
+                <div class="detail-item">
+
+                    <span>
+                        Account Status
+                    </span>
+
+                    <strong class="status-green">
+                        Active
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CURRENT SIGN-IN INFORMATION
+             ========================= -->
+
+        <section class="signin-details">
+
+            <h2>
+                Current Sign-in Information
+            </h2>
+
+
+            <div class="signin-grid">
+
+
+                <!-- DEVICE -->
+
+                <div class="signin-item">
+
+                    <span>
+                        Device
+                    </span>
+
+                    <strong>
+                        Windows Desktop
+                    </strong>
+
+                </div>
+
+
+                <!-- LOCATION -->
+
+                <div class="signin-item">
+
+                    <span>
+                        Location
+                    </span>
+
+                    <strong>
+                        India
+                    </strong>
+
+                </div>
+
+
+                <!-- RISK -->
+
+                <div class="signin-item">
+
+                    <span>
+                        Risk Level
+                    </span>
+
+                    <strong class="status-green">
+                        Low
+                    </strong>
+
+                </div>
+
+
+                <!-- CLIENT -->
+
+                <div class="signin-item">
+
+                    <span>
+                        Client Application
+                    </span>
+
+                    <strong>
+                        Web Browser
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SECURITY POLICIES APPLIED
+             ========================= -->
+
+        <section class="policies">
+
+            <h2>
+                Security Policies Applied
+            </h2>
+
+
+            <div class="policy-list">
+
+
+                <!-- MFA POLICY -->
+
+                <div class="policy-item">
+
+                    <div class="policy-icon">
+                        ✓
+                    </div>
+
+                    <div class="policy-info">
+
+                        <strong>
+                            Multi-Factor Authentication
+                        </strong>
+
+                        <span>
+                            Additional authentication required
+                        </span>
+
+                    </div>
+
+                    <div class="policy-status">
+                        Applied
+                    </div>
+
+                </div>
+
+
+                <!-- DEVICE POLICY -->
+
+                <div class="policy-item">
+
+                    <div class="policy-icon">
+                        ✓
+                    </div>
+
+                    <div class="policy-info">
+
+                        <strong>
+                            Device Verification
+                        </strong>
+
+                        <span>
+                            Device security verification enabled
+                        </span>
+
+                    </div>
+
+                    <div class="policy-status">
+                        Applied
+                    </div>
+
+                </div>
+
+
+                <!-- RISK POLICY -->
+
+                <div class="policy-item">
+
+                    <div class="policy-icon">
+                        ✓
+                    </div>
+
+                    <div class="policy-info">
+
+                        <strong>
+                            Risk Evaluation
+                        </strong>
+
+                        <span>
+                            Sign-in risk evaluation is active
+                        </span>
+
+                    </div>
+
+                    <div class="policy-status">
+                        Active
+                    </div>
+
+                </div>
+
+
+                <!-- LEGACY AUTHENTICATION -->
+
+                <div class="policy-item">
+
+                    <div class="policy-icon blocked">
+                        ✓
+                    </div>
+
+                    <div class="policy-info">
+
+                        <strong>
+                            Legacy Authentication
+                        </strong>
+
+                        <span>
+                            Legacy authentication protocols are blocked
+                        </span>
+
+                    </div>
+
+                    <div class="policy-status">
+                        Blocked
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RECENT SECURITY ACTIVITY
+             ========================= -->
+
+        <section class="activity">
+
+            <h2>
+                Recent Security Activity
+            </h2>
+
+            <div class="activity-list">
+
+                <div class="activity-item">
+
+                    <div class="activity-icon success">
+                        ✓
+                    </div>
+
+                    <div class="activity-info">
+
+                        <strong>
+                            MFA Verification Successful
+                        </strong>
+
+                        <span>
+                            Multi-factor authentication completed successfully
+                        </span>
+
+                    </div>
+
+                    <div class="activity-time">
+                        Just now
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon success">
+                        ✓
+                    </div>
+
+                    <div class="activity-info">
+
+                        <strong>
+                            Sign-in Request Evaluated
+                        </strong>
+
+                        <span>
+                            Sign-in risk evaluated as Low
+                        </span>
+
+                    </div>
+
+                    <div class="activity-time">
+                        Just now
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon success">
+                        ✓
+                    </div>
+
+                    <div class="activity-info">
+
+                        <strong>
+                            Conditional Access Policies Checked
+                        </strong>
+
+                        <span>
+                            Security policies evaluated successfully
+                        </span>
+
+                    </div>
+
+                    <div class="activity-time">
+                        Just now
+                    </div>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon success">
+                        ✓
+                    </div>
+
+                    <div class="activity-info">
+
+                        <strong>
+                            Access Granted
+                        </strong>
+
+                        <span>
+                            User access permitted after security verification
+                        </span>
+
+                    </div>
+
+                    <div class="activity-time">
+                        Just now
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MFA STATUS
+             ========================= -->
+
+        <div class="security">
+
+            ✓
+
+            <strong>
+                MFA Verified
+            </strong>
+
+            <br>
+
+            Your session is protected by
+            multi-factor authentication.
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
+
+    <script>
+
+
+        // =========================
+        // CHECK LOGIN
+        // =========================
+
+        const loggedIn =
+            sessionStorage.getItem(
+                "loggedIn"
+            );
+
+
+        const role =
+            sessionStorage.getItem(
+                "loginRole"
+            );
+
+
+        // =========================
+        // USER PAGE ONLY FOR USER
+        // =========================
+
+        if (
+            loggedIn !== "true" ||
+            role !== "User"
+        ) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // =========================
+        // GET LOGIN EMAIL
+        // =========================
+
+        const email =
+            sessionStorage.getItem(
+                "loginEmail"
+            );
+
+
+        // =========================
+        // DISPLAY EMAIL
+        // =========================
+
+        if (email) {
+
+            document.getElementById(
+                "userName"
+            ).textContent = email;
+
+
+            document.getElementById(
+                "accountEmail"
+            ).textContent = email;
+
+        }
+
+
+        // =========================
+        // LOGOUT
+        // =========================
+
+        function logoutUser() {
+
+            sessionStorage.clear();
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
